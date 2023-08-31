@@ -37,7 +37,10 @@ public class AdvertisementService {
         }
         return summaryList;
     }
-
+    public Advertisement getAdById(int id){
+        Optional<Advertisement> fromDB = advertisementRepository.findById(id);
+    return fromDB.get();
+    }
 
  //   public List<Advertisement> getMostReadPosts(int id) {
  //

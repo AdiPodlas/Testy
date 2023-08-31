@@ -21,6 +21,11 @@ class AdvertisementController {
         return advertisementService.addAdvertisement(request);
     }
 
+    @GetMapping("/advertisements/{id}")
+    public Advertisement getAdById(@PathVariable int id) {
+        return advertisementService.getAdById(id);
+    }
+
     @GetMapping("/advertisements")
     public List<AdvertisementSummary> getAllAdvertisements() {
 
