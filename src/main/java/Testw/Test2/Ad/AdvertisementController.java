@@ -47,9 +47,9 @@ class AdvertisementController {
    public void deleteAllAdvertisement() {
         advertisementService.deleteAllAdvertisement();
    }
- // @GetMapping("/popular/{count}")
- // public List<Advertisement> getPopularPosts(@PathVariable int count) {
- //     return
- // }
+  @GetMapping("/advertisements/popular")
+  public List<Advertisement> getMostReadAds () {
+      return advertisementService.getMostReadAds();
+  }
 }
 

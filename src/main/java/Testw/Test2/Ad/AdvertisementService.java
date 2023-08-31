@@ -50,9 +50,9 @@ public class AdvertisementService {
     }
 
 
-    //   public List<Advertisement> getMostReadPosts(int id) {
-    //
-    //   }
+      public List<Advertisement> getMostReadAds() {
+      return advertisementRepository.findByOrderByReadCountDesc();
+      }
     public boolean deleteAdById(int id) {
         if (advertisementRepository.existsById(id)) {
             advertisementRepository.deleteById(id);
