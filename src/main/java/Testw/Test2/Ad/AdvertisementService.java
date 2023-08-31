@@ -37,21 +37,29 @@ public class AdvertisementService {
         }
         return summaryList;
     }
-    public Advertisement getAdById(int id){
+
+    public Advertisement getAdById(int id) {
         Optional<Advertisement> fromDB = advertisementRepository.findById(id);
-    return fromDB.get();
+        if (fromDB.isEmpty()) {
+            return null;
+        }
+        Advertisement advertisement = fromDB.get();
+        advertisement.incrementReadCount();
+        advertisementRepository.save(advertisement);
+        return advertisement;
     }
 
- //   public List<Advertisement> getMostReadPosts(int id) {
- //
- //   }
-   public boolean deleteAdById(int id){
+
+    //   public List<Advertisement> getMostReadPosts(int id) {
+    //
+    //   }
+    public boolean deleteAdById(int id) {
         if (advertisementRepository.existsById(id)) {
             advertisementRepository.deleteById(id);
             return true;
         }
-       return false;
-   }
+        return false;
+    }
 
     public void deleteAllAdvertisement() {
         advertisementRepository.deleteAll();
