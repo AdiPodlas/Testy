@@ -1,6 +1,7 @@
 package Testw.Test2.Ad;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -64,4 +65,11 @@ public class AdvertisementService {
     public void deleteAllAdvertisement() {
         advertisementRepository.deleteAll();
     }
+
+    public List<Advertisement> getMostReadCountAds(int count) {
+        return advertisementRepository.findByOrderByReadCountDesc(Pageable.ofSize(count));
+    }
+
+
 }
+
