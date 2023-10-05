@@ -1,9 +1,6 @@
 package Testw.Test2.Books;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -36,5 +33,10 @@ public class Book {
     private double price;
     private int availableCopies;
 
+    public Category getCategory() {
+        return category;
+    }
+    @ManyToOne
+    private Category category;
 
 }
