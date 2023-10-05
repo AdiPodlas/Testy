@@ -8,15 +8,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/books")
 class BookController {
-
-    @Autowired
-    private BookRepository bookRepository;
+   
     @Autowired
     private BookService bookService;
 
     @PostMapping
     public Book addBook(@RequestBody Book book) {
-        return bookRepository.save(book);
+        return bookService.addBook(book);
     }
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable Long id) {
@@ -25,26 +23,26 @@ class BookController {
 
     @GetMapping
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        return bookService.getAllBooks();
     }
 
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {
-        return bookRepository.findById(id).orElse(null);
+        return bookService.getBookById(id);
     }
 
     @GetMapping("/search/byAuthor")
     public List<Book> getBooksByAuthor(@RequestParam String author) {
-        return bookRepository.findByAuthor(author);
+        return bookService.getBooksByAuthor(author);
     }
 
     @GetMapping("/search/byPriceRange")
     public List<Book> getBooksByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
-        return bookRepository.findByPriceBetween(minPrice, maxPrice);
+        return bookService.getBooksByPriceRange(minPrice, maxPrice);
     }
 
     @GetMapping("/search/notInStock")
     public List<Book> getBooksNotInStock() {
-        return bookRepository.findByAvailableCopies(0);
+        return bookService.getOutOfStockBooks();
     }
 }
