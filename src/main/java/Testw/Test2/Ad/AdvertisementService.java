@@ -19,7 +19,7 @@ public class AdvertisementService {
 
     public Advertisement addAdvertisement(AdvertisementRequest request) {
         Advertisement newAdvertisement = new Advertisement(
-                nextId,
+                advertisementRepository.getMaxId()+1,
                 request.getTitle(),
                 request.getContent(),
                 LocalDateTime.now(),
@@ -34,7 +34,7 @@ public class AdvertisementService {
         List<Advertisement> fromDb = advertisementRepository.findAll();
         List<AdvertisementSummary> summaryList = new ArrayList<>();
         for (Advertisement ad : fromDb) {
-            summaryList.add(new AdvertisementSummary(ad.getId(), ad.getTitle(), ad.getCreationDate()));
+            summaryList.add(new AdvertisementSummary(ad.getId(), ad.getTitle(),ad.getContent(), ad.getCreationDate()));
         }
         return summaryList;
     }
@@ -71,5 +71,13 @@ public class AdvertisementService {
     }
 
 
+    public List<String> getBytext(String query) {
+        List<Advertisement> listOfAds = advertisementRepository.getContainingText(query);
+        List<String> result = new ArrayList<String>();
+        for (Advertisement ad : listOfAds){
+            result.add(ad.getContent());
+        }
+        return result ;
+    }
 }
 

@@ -57,5 +57,11 @@ class AdvertisementController {
         return popularAds;
     }
 
+    @GetMapping("/advertisements/text")
+    public List<String> getByText(@RequestParam(name= "query", required = true)String query){
+        List<String> foundTexts = advertisementService.getBytext(query);
+        return foundTexts;
+    }
+
 }
 

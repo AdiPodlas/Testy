@@ -7,14 +7,22 @@ class AdvertisementSummary {
     private String title;
     private LocalDateTime creationDate;
 
-    public AdvertisementSummary(int id, String title, LocalDateTime creationDate) {
+    private String content;
+
+    public AdvertisementSummary(int id, String title,String content, LocalDateTime creationDate) {
         this.id = id;
         this.title = title;
         this.creationDate = creationDate;
+        this.content = content;
+
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getContent() {
+        return content;
     }
 
     public String getTitle() {
