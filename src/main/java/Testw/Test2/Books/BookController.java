@@ -32,17 +32,17 @@ class BookController {
     }
 
     @GetMapping("/search/byAuthor")
-    public List<Book> getBooksByAuthor(@RequestParam String author) {
-        return bookService.getBooksByAuthor(author);
+    public List<BookDto> getBooksByAuthor(@RequestParam String author) {
+        return bookService.findByAuthor(author);
     }
 
     @GetMapping("/search/byPriceRange")
-    public List<Book> getBooksByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
+    public List<BookDto> getBooksByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
         return bookService.getBooksByPriceRange(minPrice, maxPrice);
     }
 
     @GetMapping("/search/notInStock")
-    public List<Book> getBooksNotInStock() {
+    public List<BookDto> getBooksNotInStock() {
         return bookService.getOutOfStockBooks();
     }
 }
