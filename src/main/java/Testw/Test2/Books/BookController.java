@@ -45,4 +45,10 @@ class BookController {
     public List<BookDto> getBooksNotInStock() {
         return bookService.getOutOfStockBooks();
     }
+
+    @PutMapping("/{bookId}/category")
+    public BookDto setCategory(@PathVariable Long bookId, @RequestBody Long categoryId){
+        System.out.println("SOUT " + bookId + " " + categoryId);
+        return bookService.setCategory(bookId, categoryId);
+    }
 }

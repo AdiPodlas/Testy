@@ -39,4 +39,7 @@ public class Book {
     @ManyToOne
     private Category category;
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -15,6 +16,9 @@ import java.util.stream.Collectors;
 public class BookService {
     @Autowired
     BookRepository bookRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
 
 
@@ -70,4 +74,11 @@ public class BookService {
         return results;
     }
 
+    public BookDto setCategory(Long bookId, Long categoryId) {
+      Book book = bookRepository.findById(bookId).orElseThrow();
+      Category category = categoryRepository.findById(categoryId).orElseThrow();
+      book.setCategory(category);
+      bookRepository.save(book);
+      return BookDto.fromBook(book);
+   }
 }
