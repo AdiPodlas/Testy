@@ -16,6 +16,8 @@ public class BookService {
     @Autowired
     BookRepository bookRepository;
 
+
+
     public Book addBook(Book book) {
         return bookRepository.save(book);
     }
@@ -49,43 +51,41 @@ public class BookService {
 
     public List<BookDto> findByAuthor(@PathVariable String author) {
         List<Book> books = bookRepository.findByAuthor(author);
-        List<BookDto> bookDtos = new ArrayList<>();
+        List<BookDto> results = new ArrayList<>();
 
         for (Book book : books) {
-            BookDto bookDto = new BookDto();
-            BeanUtils.copyProperties(book, bookDto);
-            bookDtos.add(bookDto);
+            BookDto bookDto = BookDto.fromBook(book);
+            results.add(bookDto);
         }
 
-        return bookDtos;
+        return results;
     }
 
     public List<BookDto> getBooksByPriceRange(double minPrice, double maxPrice) {
         List<Book> books = bookRepository.findByPriceBetween(minPrice, maxPrice);
-        List<BookDto> bookDtos = books.stream()
-                .map(book -> {
-                    BookDto bookDto = new BookDto();
-                    BeanUtils.copyProperties(book, bookDto);
-                    return bookDto;
-                })
-                .collect(Collectors.toList());
+        List<BookDto> results = new ArrayList<>();
 
-        return bookDtos;
+        for (Book book : books) {
+            BookDto bookDto = BookDto.fromBook(book);
+            results.add(bookDto);
+        }
+
+        return results;
     }
+
 
 
     public List<BookDto> getOutOfStockBooks() {
         List<Book> books = bookRepository.findByAvailableCopies(0);
 
-        List<BookDto> bookDtos = books.stream()
-                .map(book -> {
-                    BookDto bookDto = new BookDto();
-                    BeanUtils.copyProperties(book, bookDto); // Kopiowanie właściwości z Book do BookDto
-                    return bookDto;
-                })
-                .collect(Collectors.toList());
+        List<BookDto> results = new ArrayList<>();
 
-        return bookDtos;
+        for (Book book : books) {
+            BookDto bookDto = BookDto.fromBook(book);
+            results.add(bookDto);
+        }
+
+        return results;
     }
 
 }
