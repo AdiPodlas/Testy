@@ -29,12 +29,7 @@ public class BookService {
 
     public List<BookDto> getAllBooks() {
         List<Book> books = bookRepository.findAll();
-        List<BookDto> resultList = new ArrayList<>();
-        for (Book book : books) {
-            BookDto bookDto = BookDto.fromBook(book);
-            resultList.add(bookDto);
-        }
-        return resultList;
+        return convertToDtoList(books);
     }
 
 
@@ -45,46 +40,33 @@ public class BookService {
         } else {
             return BookDto.fromBook(book);
         }
-
-
     }
 
     public List<BookDto> findByAuthor(@PathVariable String author) {
         List<Book> books = bookRepository.findByAuthor(author);
-        List<BookDto> results = new ArrayList<>();
-
-        for (Book book : books) {
-            BookDto bookDto = BookDto.fromBook(book);
-            results.add(bookDto);
-        }
-
-        return results;
+        return convertToDtoList(books);
     }
+
+
 
     public List<BookDto> getBooksByPriceRange(double minPrice, double maxPrice) {
         List<Book> books = bookRepository.findByPriceBetween(minPrice, maxPrice);
-        List<BookDto> results = new ArrayList<>();
-
-        for (Book book : books) {
-            BookDto bookDto = BookDto.fromBook(book);
-            results.add(bookDto);
-        }
-
-        return results;
+        return convertToDtoList(books);
     }
-
-
 
     public List<BookDto> getOutOfStockBooks() {
         List<Book> books = bookRepository.findByAvailableCopies(0);
 
+        return convertToDtoList(books);
+    }
+
+    private List<BookDto> convertToDtoList(List<Book> books) {
         List<BookDto> results = new ArrayList<>();
 
         for (Book book : books) {
             BookDto bookDto = BookDto.fromBook(book);
             results.add(bookDto);
         }
-
         return results;
     }
 
