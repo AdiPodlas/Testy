@@ -42,4 +42,9 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
+

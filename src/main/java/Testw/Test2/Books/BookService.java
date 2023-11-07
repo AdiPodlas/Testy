@@ -3,13 +3,12 @@ package Testw.Test2.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.beans.BeanUtils;
+
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 
 @Service
@@ -60,7 +59,6 @@ public class BookService {
 
     public List<BookDto> getOutOfStockBooks() {
         List<Book> books = bookRepository.findByAvailableCopies(0);
-
         return convertToDtoList(books);
     }
 
@@ -81,4 +79,24 @@ public class BookService {
       bookRepository.save(book);
       return BookDto.fromBook(book);
    }
+
+    public BookDto updatePrice(Long bookId, Double price) {
+        Book book = bookRepository.findById(bookId).orElseThrow();
+        book.setPrice(price);
+        bookRepository.save(book);
+        return BookDto.fromBook(book);
+    }
+
+    public void updateTitle(Long bookId, String newTitle) {
+
+    }
+
+    public void updateAuthor(Long bookId, String newAuthor) {
+    }
+
+    public void updateQuantity(Long bookId, int newQuantity) {
+    }
 }
+
+
+
