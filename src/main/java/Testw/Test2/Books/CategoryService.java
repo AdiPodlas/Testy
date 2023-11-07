@@ -25,5 +25,18 @@ public class CategoryService {
         }
         return resultList;
     }
+
+    public Double getTotalValue(Long id){
+       Category category = categoryRepository.findById(id).orElseThrow();
+        List<Book> categoryBooks = category.getBooks();
+        double result = 0;
+        for (Book book : categoryBooks) {
+            double value = book.getPrice() * book.getAvailableCopies();
+            result = result + value;
+        }
+        return result;
+    }
+
 }
+
 
