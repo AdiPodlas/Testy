@@ -96,6 +96,8 @@ public class BookService {
 
     public void updateQuantity(Long bookId, int newQuantity) {
     }
+
+
 }
 
 
