@@ -44,12 +44,14 @@ public class CategoryService {
         int totalBooks = categoryBooks.size();
 
             for (Book book : categoryBooks) {
-                double value = book.getPrice() * book.getAvailableCopies();
+                double value = book.getPrice();
                 result = result + value;
 
             }
             return result / totalBooks;
         }
+
+
 
     }
 
