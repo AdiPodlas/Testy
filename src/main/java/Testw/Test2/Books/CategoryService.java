@@ -27,9 +27,9 @@ public class CategoryService {
     }
 
     public Double getTotalValue(Long id){
-       Category category = categoryRepository.findById(id).orElseThrow();
-        List<Book> categoryBooks = category.getBooks();
-        double result = 0;
+       Category category = categoryRepository.findById(id).orElseThrow();   //średnia cena do zrobić jako homework
+        List<Book> categoryBooks = category.getBooks();                     //podzielić przez ilość książek
+        double result = 0;                                                  //categoryBoks.size - ilość książek w kategorii
         for (Book book : categoryBooks) {
             double value = book.getPrice() * book.getAvailableCopies();
             result = result + value;

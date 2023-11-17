@@ -46,5 +46,17 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public void setTitle(String newTitle) {
+        this.title = newTitle;
+    }
+
+    public void setAuthor(String newAuthor) {
+        this.author = newAuthor;
+    }
+
+    public void setQuantity(int newQuantity) {
+        this.availableCopies = newQuantity;
+    }
 }
 

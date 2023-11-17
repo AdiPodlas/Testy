@@ -87,14 +87,26 @@ public class BookService {
         return BookDto.fromBook(book);
     }
 
-    public void updateTitle(Long bookId, String newTitle) {
+    public BookDto updateTitle(Long bookId, String newTitle) {
+        Book book = bookRepository.findById(bookId).orElseThrow();
+        book.setTitle(newTitle);
+        bookRepository.save(book);
+        return BookDto.fromBook(book);
 
     }
 
-    public void updateAuthor(Long bookId, String newAuthor) {
+    public BookDto updateAuthor(Long bookId, String newAuthor) {
+        Book book = bookRepository.findById(bookId).orElseThrow();
+        book.setAuthor(newAuthor);
+        bookRepository.save(book);
+        return BookDto.fromBook(book);
     }
 
-    public void updateQuantity(Long bookId, int newQuantity) {
+    public BookDto updateQuantity(Long bookId, int newQuantity) {
+        Book book = bookRepository.findById(bookId).orElseThrow();
+        book.setQuantity(newQuantity);
+        bookRepository.save(book);
+        return BookDto.fromBook(book);
     }
 
 
