@@ -27,5 +27,6 @@ public class CategoryController {
     @GetMapping ("/{id}/total-valueAll")
     public Double getTotalValueOfCategory(@PathVariable Long id){ return categoryService.getTotalValueOfCategory(id); }
 
-
+    @GetMapping("/{id}/books")
+    public List<BookDto> getAllBooksFromCategory(@PathVariable Long id){return categoryService.getAllBooksFromCategory(id);}
 }

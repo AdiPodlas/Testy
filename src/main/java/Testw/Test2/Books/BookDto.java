@@ -1,5 +1,8 @@
 package Testw.Test2.Books;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookDto {
 
     public Long getId() {
@@ -48,6 +51,16 @@ public class BookDto {
             result.categoryName = "Brak kategorii";
         }
         return result;
+    }
+
+    static List<BookDto> convertToDtoList(List<Book> books) {
+        List<BookDto> results = new ArrayList<>();
+
+        for (Book book : books) {
+            BookDto bookDto = BookDto.fromBook(book);
+            results.add(bookDto);
+        }
+        return results;
     }
 
 

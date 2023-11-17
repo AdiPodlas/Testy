@@ -3,12 +3,9 @@ package Testw.Test2.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-
-
-
-import java.util.ArrayList;
 import java.util.List;
 
+import static Testw.Test2.Books.BookDto.convertToDtoList;
 
 
 @Service
@@ -18,6 +15,7 @@ public class BookService {
 
     @Autowired
     CategoryRepository categoryRepository;
+
 
 
 
@@ -62,15 +60,7 @@ public class BookService {
         return convertToDtoList(books);
     }
 
-    private List<BookDto> convertToDtoList(List<Book> books) {
-        List<BookDto> results = new ArrayList<>();
 
-        for (Book book : books) {
-            BookDto bookDto = BookDto.fromBook(book);
-            results.add(bookDto);
-        }
-        return results;
-    }
 
     public BookDto setCategory(Long bookId, Long categoryId) {
       Book book = bookRepository.findById(bookId).orElseThrow();

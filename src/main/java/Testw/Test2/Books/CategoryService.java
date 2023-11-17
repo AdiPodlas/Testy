@@ -2,9 +2,9 @@ package Testw.Test2.Books;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+import static Testw.Test2.Books.BookDto.convertToDtoList;
 
 @Service
 public class CategoryService {
@@ -51,7 +51,11 @@ public class CategoryService {
             return result / totalBooks;
         }
 
-
+    public List<BookDto> getAllBooksFromCategory(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow();
+        List<Book> categoryBooks = category.getBooks();
+        return convertToDtoList(categoryBooks);
+    }
 
     }
 
