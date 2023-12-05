@@ -58,5 +58,6 @@ public class Book {
     public void setQuantity(int newQuantity) {
         this.availableCopies = newQuantity;
     }
+
 }
 

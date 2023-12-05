@@ -7,6 +7,7 @@ import Testw.Test2.Books.BookDto;
 
 public class BookDto {
 
+
     public Long getId() {
         return id;
     }
@@ -49,7 +50,8 @@ public class BookDto {
         result.availableCopies = book.getAvailableCopies();
         if (book.getCategory() != null) {
             result.categoryName = book.getCategory().getName();
-        } else {
+        }
+        else {
             result.categoryName = "Brak kategorii";
         }
         return result;
@@ -64,6 +66,8 @@ public class BookDto {
         }
         return results;
     }
+
+
 
 
 }

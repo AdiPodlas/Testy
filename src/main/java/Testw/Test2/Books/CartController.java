@@ -19,7 +19,7 @@ public class CartController {
     }
 
     @GetMapping
-    public List<Cart> getAllCarts() {
+    public List<CartDto> getAllCarts() {
         return cartService.getAllCarts();
     }
 

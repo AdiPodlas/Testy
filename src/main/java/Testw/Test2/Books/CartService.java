@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static Testw.Test2.Books.CartDto.convertToDtoList;
 
 @Service
 
@@ -24,8 +27,9 @@ public class CartService {
     }
 
 
-    public List<Cart> getAllCarts() {                    //Zamienić na List cartDto
-        return cartRepository.findAll();
+    public List<CartDto> getAllCarts() {
+        List<Cart> carts = cartRepository.findAll();
+        return convertToDtoList(carts);
     }
 
     public CartDto addBook(Long id, Long bookId) {
@@ -55,25 +59,17 @@ public class CartService {
         Set<Book> booksInCarts = new HashSet<>();
 
         for (Cart cart : carts) {
-            booksInCarts.addAll(cart.getBooks());
-        }
-
-        List<Book> allBooks = bookRepository.findAll();
-        Set<Book> availableBooks = new HashSet<>(allBooks);
-
-        Set<Book> requestedBooks = new HashSet<>();
-
-        for (Book bookInCart : booksInCarts) {
-            if (!availableBooks.contains(bookInCart)) {
-                requestedBooks.add(bookInCart);
+            if (cart.getBooks() != null) {
+                booksInCarts.addAll(cart.getBooks());
             }
         }
 
         List<BookDto> requestedBookDtos = new ArrayList<>();
-        for (Book requestedBook : requestedBooks) {
-            requestedBookDtos.add(BookDto.fromBook(requestedBook));
+        for (Book requestedBook : booksInCarts) {
+            if (requestedBook.getAvailableCopies() == 0) {
+                requestedBookDtos.add(BookDto.fromBook(requestedBook));
+            }
         }
-
         return requestedBookDtos;
     }
 }

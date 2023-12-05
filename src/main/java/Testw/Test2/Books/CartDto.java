@@ -21,15 +21,21 @@ public class CartDto {
         result.id = cart.getId();
         result.books = new ArrayList<>();
 
-        List<BookDto> bookDtos = new ArrayList<>();
         for (Book book : cart.getBooks()) {
-            bookDtos.add(BookDto.fromBook(book));
+            result.books.add(BookDto.fromBook(book));
         }
-        result.books = bookDtos;
         return result;
     }
 
+    static List<CartDto> convertToDtoList(List<Cart> carts) {
+        List<CartDto> results = new ArrayList<>();
 
+        for (Cart cart : carts) {
+            CartDto cartDto = CartDto.fromCart(cart);
+            results.add(cartDto);
+        }
+        return results;
+    }
 }
 
 
