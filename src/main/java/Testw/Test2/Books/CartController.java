@@ -28,5 +28,12 @@ public class CartController {
         return cartService.addBook(id, bookId);
     }
 
+    @GetMapping ("/{id}/total-value")
+    public Double getTotalValueOfCart(@PathVariable Long id){ return cartService.getTotalValueOfCart(id); }
+
+    @GetMapping("/requested")
+    public List<BookDto> getRequestedBooks() {
+        return cartService.getRequestedBooks();
+    }
 }
 

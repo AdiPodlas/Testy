@@ -1,11 +1,11 @@
 package Testw.Test2.Books;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartDto {
 
     private Long id;
-
     private List<BookDto> books;
 
     public Long getId() {
@@ -18,7 +18,20 @@ public class CartDto {
 
     static CartDto fromCart(Cart cart) {
         CartDto result = new CartDto();
-        result.id = cart.getId();                //trzeba dodać result books
+        result.id = cart.getId();
+        result.books = new ArrayList<>();
+
+        List<BookDto> bookDtos = new ArrayList<>();
+        for (Book book : cart.getBooks()) {
+            bookDtos.add(BookDto.fromBook(book));
+        }
+        result.books = bookDtos;
         return result;
     }
+
+
 }
+
+
+
+
