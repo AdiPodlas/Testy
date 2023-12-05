@@ -47,7 +47,7 @@ public class CartService {
             result = result + value;
 
         }
-        return result / totalBooks;
+        return result;
     }
 
     public List<BookDto> getRequestedBooks() {
