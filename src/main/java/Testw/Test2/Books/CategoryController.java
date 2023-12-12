@@ -35,9 +35,9 @@ public class CategoryController {
         return categoryService.getAvglValueOfCategory2(categoryId);
     }
 
-    @GetMapping("/{categoryId}/total-value")
-    public Double getTotalValue2(@PathVariable Long categoryId) {
-        return categoryService.getTotalValue(categoryId);
+    @GetMapping("/{id}/total-value")
+    public Double getTotalValue2(@PathVariable Long id) {
+        return categoryService.getTotalValue(id);
     }
 
 }

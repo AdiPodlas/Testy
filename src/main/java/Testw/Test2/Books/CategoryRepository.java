@@ -10,6 +10,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     Double getAveragePriceByCategoryId(@Param("categoryId") Long categoryId);
 
     @Query("SELECT SUM(b.price * b.availableCopies) FROM Category c JOIN c.books b WHERE c.id = :categoryId")
-    Double getTotalValueByCategoryId2(@Param("categoryId") Long categoryId);
+    Double getTotalValueByCategoryId2(@Param("Id") Long categoryId);
 
 }
