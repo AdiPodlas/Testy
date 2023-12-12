@@ -8,5 +8,4 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 
     @Query("SELECT sum(b.price) FROM Cart c join c.books b where c.id = :id")
     double getTotal(@Param("id") Long id);
-
 }

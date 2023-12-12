@@ -56,6 +56,9 @@ public class CategoryService {
         List<Book> categoryBooks = category.getBooks();
         return convertToDtoList(categoryBooks);
     }
+    public Double getAvglValueOfCategory2(Long id) {
+        return categoryRepository.getAveragePriceByCategoryId(id);
+    }
 
     }
 
