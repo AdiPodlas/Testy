@@ -17,8 +17,6 @@ public class BookService {
     CategoryRepository categoryRepository;
 
 
-
-
     public Book addBook(Book book) {
         return bookRepository.save(book);
     }

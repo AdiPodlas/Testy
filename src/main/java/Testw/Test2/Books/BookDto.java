@@ -7,6 +7,42 @@ import Testw.Test2.Books.BookDto;
 
 public class BookDto {
 
+    private Long id;
+    private String title;
+    private String author;
+    private double price;
+    private int availableCopies;
+    private String categoryName;
+    private Cover cover;
+
+
+    static BookDto fromBook(Book book) {
+        BookDto result = new BookDto();
+        result.id = book.getId();
+        result.title = book.getTitle();
+        result.author = book.getAuthor();
+        result.price = book.getPrice();
+        result.availableCopies = book.getAvailableCopies();
+        result.cover = book.getCover();
+        if (book.getCategory() != null) {
+            result.categoryName = book.getCategory().getName();
+        }
+        else {
+            result.categoryName = "Brak kategorii";
+        }
+        return result;
+    }
+
+    static List<BookDto> convertToDtoList(List<Book> books) {
+        List<BookDto> results = new ArrayList<>();
+
+        for (Book book : books) {
+            BookDto bookDto = BookDto.fromBook(book);
+            results.add(bookDto);
+        }
+        return results;
+    }
+
 
     public Long getId() {
         return id;
@@ -32,42 +68,6 @@ public class BookDto {
         return categoryName;
     }
 
-    private Long id;
-    private String title;
-    private String author;
-    private double price;
-    private int availableCopies;
-
-    private String categoryName;
-
-
-    static BookDto fromBook(Book book) {
-        BookDto result = new BookDto();
-        result.id = book.getId();
-        result.title = book.getTitle();
-        result.author = book.getAuthor();
-        result.price = book.getPrice();
-        result.availableCopies = book.getAvailableCopies();
-        if (book.getCategory() != null) {
-            result.categoryName = book.getCategory().getName();
-        }
-        else {
-            result.categoryName = "Brak kategorii";
-        }
-        return result;
-    }
-
-    static List<BookDto> convertToDtoList(List<Book> books) {
-        List<BookDto> results = new ArrayList<>();
-
-        for (Book book : books) {
-            BookDto bookDto = BookDto.fromBook(book);
-            results.add(bookDto);
-        }
-        return results;
-    }
-
-
-
+    public Cover getCover() {return cover;}
 
 }
