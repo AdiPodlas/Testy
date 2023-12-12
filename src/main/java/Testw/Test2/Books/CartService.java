@@ -72,4 +72,12 @@ public class CartService {
         }
         return requestedBookDtos;
     }
+
+    public List<BookDto> getRequestedBooks2(){
+        return  BookDto.convertToDtoList(bookRepository.findRequseted());
+    }
+
+    public Double getTotalValueOfCart2(Long id){
+        return cartRepository.getTotal(id);
+    }
 }

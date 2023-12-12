@@ -29,11 +29,11 @@ public class CartController {
     }
 
     @GetMapping ("/{id}/total-value")
-    public Double getTotalValueOfCart(@PathVariable Long id){ return cartService.getTotalValueOfCart(id); }
+    public Double getTotalValueOfCart(@PathVariable Long id){ return cartService.getTotalValueOfCart2(id); }
 
     @GetMapping("/requested")
     public List<BookDto> getRequestedBooks() {
-        return cartService.getRequestedBooks();
+        return cartService.getRequestedBooks2();
     }
 }
 

@@ -26,7 +26,7 @@ public class CategoryService {
         return resultList;
     }
 
-    public Double getTotalValue(Long id) {
+    public Double getTotalValue(Long id) {            //Przepisać na JPQL
         Category category = categoryRepository.findById(id).orElseThrow();
         List<Book> categoryBooks = category.getBooks();
         double result = 0;
@@ -37,7 +37,7 @@ public class CategoryService {
         return result;
     }
 
-    public Double getTotalValueOfCategory(Long id) {
+    public Double getAvglValueOfCategory(Long id) {   //Przepisać na JPQL
         Category category = categoryRepository.findById(id).orElseThrow();
         List<Book> categoryBooks = category.getBooks();
         double result = 0;
