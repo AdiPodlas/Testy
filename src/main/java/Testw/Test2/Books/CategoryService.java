@@ -60,6 +60,10 @@ public class CategoryService {
         return categoryRepository.getAveragePriceByCategoryId(id);
     }
 
+    public Double getTotalValue2(Long id) {
+        return categoryRepository.getTotalValueByCategoryId2(id);
+    }
+
     }
 
 

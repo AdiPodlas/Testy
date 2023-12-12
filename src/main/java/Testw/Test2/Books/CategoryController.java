@@ -21,8 +21,8 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
-    @GetMapping ("/{id}/total-value")
-    public Double getTotalValue(@PathVariable Long id){ return categoryService.getTotalValue(id); }
+  // @GetMapping ("/{id}/total-value")
+  // public Double getTotalValue(@PathVariable Long id){ return categoryService.getTotalValue(id); }
 
     @GetMapping ("/{id}/total-valueAll")
     public Double getTotalValueOfCategory(@PathVariable Long id){ return categoryService.getAvglValueOfCategory(id); }
@@ -33,6 +33,11 @@ public class CategoryController {
     @GetMapping("/{categoryId}/average-price")
     public Double getAveragePrice(@PathVariable Long categoryId) {
         return categoryService.getAvglValueOfCategory2(categoryId);
+    }
+
+    @GetMapping("/{categoryId}/total-value")
+    public Double getTotalValue2(@PathVariable Long categoryId) {
+        return categoryService.getTotalValue(categoryId);
     }
 
 }
