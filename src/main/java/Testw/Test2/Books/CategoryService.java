@@ -56,12 +56,12 @@ public class CategoryService {
         List<Book> categoryBooks = category.getBooks();
         return convertToDtoList(categoryBooks);
     }
-    public Double getAvglValueOfCategory2(Long id) {
-        return categoryRepository.getAveragePriceByCategoryId(id);
+    public Double getAvglValueOfCategory2(Long categoryId) {
+        return categoryRepository.getAveragePriceByCategoryId(categoryId);
     }
 
-    public Double getTotalValue2(Long id) {
-        return categoryRepository.getTotalValueByCategoryId2(id);
+    public Double getTotalValue2(Long categoryId) {
+        return categoryRepository.getTotalValueByCategoryId2(categoryId);
     }
 
     }

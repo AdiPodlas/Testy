@@ -30,14 +30,14 @@ public class CategoryController {
     @GetMapping("/{id}/books")
     public List<BookDto> getAllBooksFromCategory(@PathVariable Long id){return categoryService.getAllBooksFromCategory(id);}
 
-    @GetMapping("/{id}/average-price")
-    public Double getAveragePrice(@PathVariable Long id) {
-        return categoryService.getAvglValueOfCategory2(id);
+    @GetMapping("/{categoryId}/average-price")
+    public Double getAveragePrice(@PathVariable Long categoryId) {
+        return categoryService.getAvglValueOfCategory2(categoryId);
     }
 
-    @GetMapping("/{id}/total-value")
-    public Double getTotalValue2(@PathVariable Long id) {
-        return categoryService.getTotalValue2(id);
+    @GetMapping("/{categoryId}/total-value")
+    public Double getTotalValue2(@PathVariable Long categoryId) {
+        return categoryService.getTotalValue2(categoryId);
     }
 
 }
