@@ -16,6 +16,17 @@ public class Cart {
     @ManyToMany
     private List<Book> books;
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    @ManyToOne
+    private User owner;
+
     public Long getId() {
         return id;
     }

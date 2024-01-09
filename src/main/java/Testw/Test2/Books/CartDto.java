@@ -8,6 +8,16 @@ public class CartDto {
     private Long id;
     private List<BookDto> books;
 
+    private UserDTO owner;
+
+    public UserDTO getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserDTO owner) {
+        this.owner = owner;
+    }
+
     public Long getId() {
         return id;
     }
@@ -20,6 +30,7 @@ public class CartDto {
         CartDto result = new CartDto();
         result.id = cart.getId();
         result.books = new ArrayList<>();
+        result.owner = UserDTO.fromUser(cart.getOwner());
 
         for (Book book : cart.getBooks()) {
             result.books.add(BookDto.fromBook(book));

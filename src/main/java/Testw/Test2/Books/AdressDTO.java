@@ -21,7 +21,15 @@ public class AdressDTO {
         this.apartment = apartment;
     }
 
-    // Getters and setters
+    public static AdressDTO fromAdress(Adress adress) {
+        AdressDTO result = new AdressDTO();
+        result.id = adress.getId();
+        result.city = adress.getCity();
+        result.street = adress.getStreet();
+        result.number = adress.getNumber();
+        result.apartment = adress.getApartment();
+        return result;
+    }
 
     public Long getId() {
         return id;

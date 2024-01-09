@@ -18,7 +18,8 @@ public class CartService {
 
     @Autowired
     private CartRepository cartRepository;
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private BookRepository bookRepository;
 
@@ -79,5 +80,13 @@ public class CartService {
 
     public Double getTotalValueOfCart2(Long id){
         return cartRepository.getTotal(id);
+    }
+
+    public CartDto assignOwner(Long id, Long ownerId) {
+        User user = userRepository.findById(ownerId).orElseThrow();
+        Cart cart = cartRepository.findById(id).orElseThrow();
+        cart.setOwner(user);
+        cartRepository.save(cart);
+        return CartDto.fromCart(cart);
     }
 }

@@ -19,6 +19,19 @@ public class UserDTO {
         this.deliveryAdress = deliveryAdress;
     }
 
+    public static UserDTO fromUser(User user) {
+        UserDTO result = new UserDTO();
+        result.id = user.getId();
+        result.name = user.getName();
+        if (user.getAdress() != null) {
+            result.adress = AdressDTO.fromAdress(user.getAdress());
+        }
+        if (user.getDeliveryAdress() != null) {
+            result.deliveryAdress = AdressDTO.fromAdress(user.getDeliveryAdress());
+        }
+        return result;
+    }
+
 
     public Long getId() {
         return id;
