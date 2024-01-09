@@ -22,6 +22,10 @@ public class UserService {
         if (user.getAdress() != null) {
             adressRepository.save(user.getAdress());
         }
+        if (user.getDeliveryAdress() != null) {
+            adressRepository.save(user.getDeliveryAdress());
+        }
+
         return userRepository.save(user);
     }
 
