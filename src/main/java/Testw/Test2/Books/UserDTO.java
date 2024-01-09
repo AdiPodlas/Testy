@@ -1,26 +1,24 @@
 package Testw.Test2.Books;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table( name = "shopUsers")
-
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
 
     private Long id;
-
     private String name;
-
     private String email;
+    private AdressDTO adress;
+    private AdressDTO deliveryAdress;
 
-    @OneToOne()
-    private Adress adress;
+    public UserDTO() {
+    }
 
-    @OneToOne
-    private Adress deliveryAdress;
+    public UserDTO(Long id, String name, String email, AdressDTO address, AdressDTO deliveryAddress) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.adress = adress;
+        this.deliveryAdress = deliveryAdress;
+    }
+
 
     public Long getId() {
         return id;
@@ -46,19 +44,19 @@ public class User {
         this.email = email;
     }
 
-    public Adress getAdress() {
+    public AdressDTO getAdress() {
         return adress;
     }
 
-    public void setAdress(Adress adress) {
+    public void setAddress(AdressDTO adress) {
         this.adress = adress;
     }
 
-    public Adress getDeliveryAdress() {
+    public AdressDTO getDeliveryAdress() {
         return deliveryAdress;
     }
 
-    public void setDeliveryAdress(Adress deliveryAdress) {
+    public void setDeliveryAddress(AdressDTO deliveryAdress) {
         this.deliveryAdress = deliveryAdress;
     }
 }
