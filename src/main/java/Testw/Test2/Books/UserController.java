@@ -1,6 +1,7 @@
 package Testw.Test2.Books;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class UserController{
 
     @Autowired
     private UserService userService;
+
 
     @PostMapping
     public User addUser(@RequestBody User user) {
@@ -37,4 +39,15 @@ public class UserController{
     public List<CartDto> getUserCarts(@PathVariable Long userId) {
         return userService.getUserCarts(userId);
     }
+
+    @GetMapping("/{userId}/carts/total-value")
+    public ResponseEntity<Double> getTotalCartValueForUser(@PathVariable Long userId) {
+        Double totalValue = userService.getTotalCartValueForUser(userId);
+
+        if (totalValue != null) {
+            return ResponseEntity.ok(totalValue);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }

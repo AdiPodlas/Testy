@@ -30,7 +30,8 @@ public class CartDto {
         CartDto result = new CartDto();
         result.id = cart.getId();
         result.books = new ArrayList<>();
-        result.owner = UserDTO.fromUser(cart.getOwner());
+        if (cart.getOwner() != null)
+            result.owner = UserDTO.fromUser(cart.getOwner());
 
         for (Book book : cart.getBooks()) {
             result.books.add(BookDto.fromBook(book));

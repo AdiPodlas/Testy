@@ -50,4 +50,7 @@ public class UserService {
 
         return Collections.emptyList();
     }
+    public Double getTotalCartValueForUser(Long userId) {
+        return userRepository.getTotalCartValueForUser(userId).orElse(0.0);
+    }
         }
