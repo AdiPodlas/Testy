@@ -32,4 +32,9 @@ public class UserController{
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+
+    @GetMapping("/{userId}/carts")
+    public List<CartDto> getUserCarts(@PathVariable Long userId) {
+        return userService.getUserCarts(userId);
+    }
 }
