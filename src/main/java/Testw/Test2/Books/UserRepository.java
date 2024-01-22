@@ -7,10 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface UserRepository extends JpaRepository <User, Long>{
 
-
-
-
-
     @Query("SELECT coalesce(sum(b.price),0) FROM Cart c join c.books b WHERE c.owner.id = :userId")
     double getTotalCartValueForUser(@Param("userId") Long userId);
 }
