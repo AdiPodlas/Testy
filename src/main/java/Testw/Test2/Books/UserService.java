@@ -3,6 +3,7 @@ package Testw.Test2.Books;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,19 @@ public class UserService {
         return Collections.emptyList();
     }
     public Double getTotalCartValueForUser(Long userId) {
-        return userRepository.getTotalCartValueForUser(userId).orElse(0.0);
+        return userRepository.getTotalCartValueForUser(userId);
+    }
+
+    public List<UserWithTotalCartValueDto> getUsersWithTotalCartValue() {
+        List<UserWithTotalCartValueDto> result = new ArrayList<>();
+
+        List<User> allUsers = userRepository.findAll();
+        for (User user : allUsers) {
+            Double totalCartValue = userRepository.getTotalCartValueForUser(user.getId());
+            UserDTO userDto = UserDTO.fromUser(user);
+            result.add(new UserWithTotalCartValueDto(userDto, totalCartValue));
+        }
+
+        return result;
     }
         }

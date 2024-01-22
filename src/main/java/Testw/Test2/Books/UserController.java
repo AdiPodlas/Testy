@@ -49,5 +49,9 @@ public class UserController{
         }
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/with-total-cart-value")
+    public List<UserWithTotalCartValueDto> getUsersWithTotalCartValue() {
+        return userService.getUsersWithTotalCartValue();
+    }
+    }
 
-}
